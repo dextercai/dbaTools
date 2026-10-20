@@ -15,7 +15,6 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import {
   BrowserRouter,
-  Navigate,
   NavLink as RouterNavLink,
   Outlet,
   Route,

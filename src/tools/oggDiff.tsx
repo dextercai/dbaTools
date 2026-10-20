@@ -18,14 +18,14 @@ import {
   type ConfigIssue,
   type OggKind,
   type OggMode,
-} from '../../utils/oggConfig';
+} from '../utils/oggConfig';
 
 type OutputMode = 'diff' | 'full';
 
 const exampleConfig = `EXTRACT EXT01
 USERIDALIAS ogguser
 
-SOURCECATALOG DTSBRIDGE
+SOURCECATALOG CCCBRIDGE
 TABLE APP.T_ORDER;
 TABLE APP.T_USER;
 
@@ -38,7 +38,7 @@ export default function OggConfigPage() {
   const [outputMode, setOutputMode] = useState<OutputMode>('diff');
   const [original, setOriginal] = useState(exampleConfig);
   const [tables, setTables] = useState(
-    'DTSBRIDGE.APP.T_ORDER\nDTSBRIDGE.APP.T_PAYMENT',
+    'CCCBRIDGE.APP.T_ORDER\nCCCBRIDGE.APP.T_PAYMENT',
   );
   const [inputCatalog, setInputCatalog] = useState('');
   const [copyStatus, setCopyStatus] = useState('');
@@ -111,7 +111,7 @@ export default function OggConfigPage() {
 
           <TextInput
             label="输入表默认 PDB（可选）"
-            placeholder={result.lastCatalog ?? '例如 DTSBRIDGE'}
+            placeholder={result.lastCatalog ?? '例如 CCCBRIDGE'}
             description={
               result.lastCatalog
                 ? `留空时，双段式输入默认归属最后一个 SOURCECATALOG：${result.lastCatalog}`
@@ -125,7 +125,7 @@ export default function OggConfigPage() {
             label={mode === 'add' ? '需要增加的表' : '需要注释的表'}
             description={
               kind === 'TABLE'
-                ? '每行一个表，支持 APP.T_ORDER 或 DTSBRIDGE.APP.T_ORDER'
+                ? '每行一个表，支持 APP.T_ORDER 或 CCCBRIDGE.APP.T_ORDER'
                 : mode === 'add'
                   ? '每行一个映射；SOURCE => TARGET 指定目标，不写箭头时 TARGET 默认与 SOURCE 相同'
                   : '每行一个源表名；仅按 MAP 的源表匹配'
